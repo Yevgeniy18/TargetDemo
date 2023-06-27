@@ -80,8 +80,9 @@
   font-size: 20px;
 }
 .hide {
-  visibility: hidden;
-  display: none;
+  transform: translateY(300px);
+  transition-duration: 300ms;
+  height: 0px;
 }
 
 .progress__bar__animation__container {
