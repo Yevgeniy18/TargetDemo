@@ -5,7 +5,7 @@ import "./styles/index.css";
 import axios from "axios";
 
 function App() {
-  // Defininf variables
+  // Defining variables and constants
   const [initialValue, setInitialValue] = useState(0);
   const [reached, setReached] = useState(false);
   const targetValue = 15;
@@ -53,7 +53,7 @@ function App() {
     if (parseInt(currentAmount.toFixed(2)) === targetValue) {
       setReached(true);
     }
-  }, [currentAmount]);
+  }, [currentAmount, reached]);
 
   return (
     <main className="target__wrapper">
@@ -98,7 +98,7 @@ function App() {
                     }`}
                   >
                     <span>Target</span>
-                    <span>{targetValue}$</span>
+                    <span>{targetValue} $</span>
                   </div>
                 </div>
               </div>
@@ -107,10 +107,19 @@ function App() {
               <div>
                 <FcInfo />
               </div>
-              <span>
-                You need {targetValue - currentAmount.toFixed(0)}$ more to reach
-                your target
-              </span>
+
+              {targetValue - currentAmount < 1 ? (
+                <span>
+                  {" "}
+                  You need ${Number(targetValue-currentAmount).toFixed(2)} more to reach your target
+                </span>
+              ) : (
+                <span>
+                  {" "}
+                  You need ${Number(targetValue-currentAmount).toFixed(0)} more to reach your target
+                </span>
+              )}
+              <span></span>
             </div>
           </div>
         </div>
